@@ -183,24 +183,62 @@ generateTable(tableArea)
      */
 
 const object = {
-  img: 'https://placedog.net/108',
+  img: 'https://placedog.net/106',
   name: 'asdf',
   quantity: 8,
   price: 80,
 }
-const addRow = function (table, object) {}
+const addRow = function (table, object) {
+  const newTr = document.createElement('tr')
+  for (let j = 0; j < 4; j++) {
+    const newTd = document.createElement('td')
+    newTd.style.border = '1px, solid'
+    if (j === 0) {
+      newTd.innerHTML = `<img src="${object.img}"/>`
+    } else if (j === 1) {
+      newTd.innerText = object.name
+    } else if (j === 2) {
+      newTd.innerText = object.quantity
+    } else {
+      newTd.innerText = object.price
+    }
+    newTr.appendChild(newTd)
+  }
+  table.appendChild(newTr)
+}
 
-addRow()
+const tableBody = document.getElementsByTagName('tbody')[0]
+addRow(tableBody, object)
 
 /* ESERCIZIO 14
        Crea una funzione che nasconda le immagini della tabella quando eseguita
      */
 
-const hideAllImages = function () {}
+const hideAllImages = function (img) {
+  for (let i = 0; i < img.length; i++) img[i].style.display = 'none'
+}
+const imgs = document.getElementsByTagName('img')
+//hideAllImages(imgs)
 
 /* EXTRA ESERCIZIO 15
        Crea una funzione che cambi il colore del h2 con id "changeMyColor"
         con un colore random ad ogni click ricevuto
      */
 
-const changeColorWithRandom = function () {}
+const generateRandomColor = function () {
+  const color = Math.floor(Math.random() * 256)
+  return color
+}
+
+const Coloredh2 = document.getElementById('changeMyColor')
+const changeColorWithRandom = function (h2) {
+  h2.style.color =
+    'rgb(' +
+    generateRandomColor() +
+    ',' +
+    generateRandomColor() +
+    ',' +
+    generateRandomColor() +
+    ')'
+}
+changeColorWithRandom(Coloredh2)
